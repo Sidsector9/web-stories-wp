@@ -15,6 +15,11 @@
  */
 
 /**
+ * External dependencies
+ */
+import { waitFor } from '@testing-library/react';
+
+/**
  * Internal dependencies
  */
 import { Fixture } from '../../../../../../karma/fixture';
@@ -35,6 +40,11 @@ describe('Text Sets Library Panel', () => {
     });
 
     await fixture.events.mouse.clickOn(textTab, 10, 20);
+    await waitFor(() =>
+      fixture.editor.library.getAllByRole('listitem', {
+        name: /^Insert Text Set$/,
+      })
+    );
   });
 
   afterEach(() => {
